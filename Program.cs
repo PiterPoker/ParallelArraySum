@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace ParallelArraySum;
 
+///<summary>
+/// Program to compare the performance of sequential, parallel, and LINQ-based array summation.
+///</summary>
 public class Program
 {
+    ///<summary>
+    /// The main program entry point.  Tests array summation methods with different array sizes.
+    ///</summary>
+    ///<param name="args">Command-line arguments (not used).</param>
     public static void Main(string[] args)
     {
         int[][] arrays = [
@@ -32,11 +39,22 @@ public class Program
         }
     }
 
+    ///<summary>
+    /// Runs a test with the specified calculator and array, measuring execution time.
+    ///</summary>
+    ///<param name="calculator">The summation calculator to use.</param>
+    ///<param name="array">The input integer array.</param>
+    ///<param name="actionResult">An action to handle the test results (time and sum).</param>
     private static void RunTest(ISumCalculator calculator, int[] array, Action<string> actionResult)
     {
         Measure(() => calculator.CalculateSum(array), actionResult);
     }
 
+    ///<summary>
+    ///  Measures the execution time of a given calculation.
+    ///</summary>
+    ///<param name="calculation">The calculation to time.</param>
+    ///<param name="actionResult">An action to handle the timing result.</param>
     private static void Measure(Func<long> calculation, Action<string> actionResult)
     {
         var stopwatch = Stopwatch.StartNew();
